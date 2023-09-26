@@ -32,7 +32,7 @@ function createUser(user) {
     const ul = document.getElementById('fav-films');
     
     user.favFilms.forEach(film => {
-        const li = document.createElement('li');
+       const li = document.createElement('li');
         li.textContent = film;
         ul.appendChild(li);
     })
@@ -120,7 +120,7 @@ const populateElements = (user, userElements) => {
         const pElement = document.createElement('p');
         pElement.textContent = e;
         return pElement;
-     })
+    })
 
     userElements.bands = bandList;
     return userElements;
@@ -149,3 +149,29 @@ users.forEach(user => {
 // EVITAR LAS BANDAS PARA EL EJERCICIO 2
 // 2. Obtener la info del usuario desde inputs y mostrar en tarjetas
 // Al menos deben tener 2 commits
+
+const createUserCard = (user, userElements) => {
+    userElements.user_name.textContent = user.user_name;
+    userElements.age.textContent = user.age;
+    userElements.description.textContent = user.description;
+
+    return userElements;
+
+}
+
+const ageEntrada = document.getElementById('edad');
+const descriptionEntrada = document.getElementById('description');
+profileBtn.addEventListener('click', () => {
+    const newUser = {
+        user_name : inputName.value,
+        description : descriptionEntrada.value,
+        age : ageEntrada.value
+    }
+    users.push(newUser)
+    const card = createCard();
+    const userElements = createDescription();
+    
+    const elementsWithData = createUserCard(newUser, userElements);
+    renderElements(card, elementsWithData);
+    CARD_SECTION.append(card);
+})
